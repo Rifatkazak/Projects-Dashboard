@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import ExpenseForm from '../components/expense/ExpenseForm.js';
 import ExpenseCard from '../components/expense/ExpenseCard';
 import '../styles/ExpenseTracker.css';
-import { getExpenses } from '../api.js';
 
-const TaskTrackerPage = () => {
+const ExpenseTrackerPage = () => {
   const [expenses, setExpenses] = useState([]);
 
   
@@ -41,17 +40,41 @@ const TaskTrackerPage = () => {
     setExpenses(data.data);
   };
 
+  const updateExpense = async (id, updatedExpense) => {
+    const response = await fetch(`http://127.0.0.1:5000/expense-tracker/update-expense/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedExpense),
+    });
+    const data = await response.json();
+    if (data.data) {
+      setExpenses(data.data);  // Update the state with the new list of expenses
+    }
+  };
+
+  const deleteExpense = async (id) => {
+    const response = await fetch(`http://127.0.0.1:5000/expense-tracker/delete-expense/${id}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    if (data.data) {
+      setExpenses(data.data);  // Remove the deleted expense from the state
+    }
+  };
+
   return (
     <div className="task-tracker-page">
       <h2>Expense Tracker</h2>
       <ExpenseForm onAddExpense={addExpense} />
       <div className="expense-cards-container">
         {expenses.map((expense) => (
-          <ExpenseCard key={expense.id} expense={expense} />
+          <ExpenseCard key={expense.id} expense={expense} onUpdateExpense={updateExpense}  onDeleteExpense={deleteExpense}/>
         ))}
       </div>
     </div>
   );
 };
 
-export default TaskTrackerPage;
+export default ExpenseTrackerPage;

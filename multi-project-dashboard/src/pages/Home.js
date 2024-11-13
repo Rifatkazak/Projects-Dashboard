@@ -40,7 +40,7 @@ const Home = () => {
                 <ProjectCard
                     projectName="Task Manager"
                     description="Manage your tasks"
-                    link="/project/task-manager"
+                    link="/TaskManager"
                 />
             </div>
 
