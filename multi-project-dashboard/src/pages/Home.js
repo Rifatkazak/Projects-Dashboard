@@ -35,7 +35,7 @@ const Home = () => {
                 <ProjectCard
                     projectName="GitHub User Activity"
                     description="View GitHub user activity"
-                    link="/project/github-user-activity"
+                    link="/GithubActivity"
                 />
                 <ProjectCard
                     projectName="Task Manager"

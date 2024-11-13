@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
@@ -10,8 +9,9 @@ const TaskManager = () => {
   // Fetch tasks from the server
   const getTasks = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/task-manager/list-tasks');
-      setTasks(response.data.tasks);
+      const response = await fetch('http://127.0.0.1:5000/task-manager/list-tasks');
+      const data = await response.json();
+      setTasks(data.tasks);
     } catch (error) {
       console.error('Error fetching tasks:', error);
     }
@@ -28,7 +28,13 @@ const TaskManager = () => {
       return;
     }
     try {
-      await axios.post('http://127.0.0.1:5000/task-manager/add-task', newTask);
+      await fetch('http://127.0.0.1:5000/task-manager/add-task', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTask),
+      });
       setNewTask({ title: '', description: '' });  // Clear input fields
       getTasks();  // Refresh task list
     } catch (error) {
@@ -43,7 +49,13 @@ const TaskManager = () => {
       return;
     }
     try {
-      await axios.put(`http://127.0.0.1:5000/task-manager/update-task/${taskToEdit.id}`, taskToEdit);
+      await fetch(`http://127.0.0.1:5000/task-manager/update-task/${taskToEdit.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(taskToEdit),
+      });
       setTaskToEdit(null);  // Clear edit state
       getTasks();  // Refresh task list
     } catch (error) {
@@ -54,7 +66,9 @@ const TaskManager = () => {
   // Delete a task
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/task-manager/delete-task/${id}`);
+      await fetch(`http://127.0.0.1:5000/task-manager/delete-task/${id}`, {
+        method: 'DELETE',
+      });
       getTasks();  // Refresh task list
     } catch (error) {
       console.error('Error deleting task:', error);
@@ -64,7 +78,13 @@ const TaskManager = () => {
   // Mark task as done, in progress, or not done
   const markTask = async (id, status) => {
     try {
-      await axios.put(`http://127.0.0.1:5000/task-manager/mark-task/${id}`, { status });
+      await fetch(`http://127.0.0.1:5000/task-manager/mark-task/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status }),
+      });
       getTasks();  // Refresh task list
     } catch (error) {
       console.error('Error marking task:', error);

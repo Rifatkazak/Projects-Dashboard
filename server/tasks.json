@@ -1,14 +1,8 @@
 [
     {
-        "id": 1,
-        "title": "Test",
-        "description": "Deneme",
-        "status": "not done"
-    },
-    {
         "id": 2,
-        "title": "new task",
+        "title": "new task test",
         "description": "create demo",
-        "status": "not done"
+        "status": "in progress"
     }
 ]

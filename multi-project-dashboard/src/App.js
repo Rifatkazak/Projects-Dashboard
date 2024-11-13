@@ -6,6 +6,7 @@ import './App.css';  // CSS dosyasını import ediyoruz
 import ProjectDetail from './pages/ProjectDetail';
 import ExpenseTracker from './pages/ExpenseTracker';
 import TaskManager from './pages/TaskManager';
+import GithubActivity from './pages/GithubActivitiy';
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/ExpenseTracker" element={<ExpenseTracker />} />
                     <Route path="/TaskManager" element={<TaskManager />} />
+                    <Route path="/GithubActivity" element={<GithubActivity />} />
                     <Route path="/project/:projectName" element={<ProjectDetail />} />
                 </Routes>
             </div>

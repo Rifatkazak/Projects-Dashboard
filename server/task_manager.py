@@ -2,8 +2,11 @@ import sys
 import json
 import os
 from flask import Blueprint, jsonify, request
+from flask_cors import CORS
 
 task_manager_bp = Blueprint('task_manager', __name__)
+
+CORS(task_manager_bp)
 
 # Constants
 TASKS_FILE = "tasks.json"
@@ -59,10 +62,14 @@ def list_tasks():
         tasks = [task for task in tasks if task['status'] == filter_status]
     return jsonify({"tasks": tasks}), 200
 
-@task_manager_bp.route('/update-task', methods=['PUT'])
-def update_task():
+@task_manager_bp.route('/update-task/<int:task_id>', methods=['PUT', 'OPTIONS'])
+def update_task(task_id):
+    if request.method == 'OPTIONS':
+        # Explicitly handle OPTIONS preflight requests
+        return jsonify({
+            'message': 'CORS preflight request handled successfully'
+        }), 200
     data = request.get_json()
-    task_id = data.get('id')
     title = data.get('title')
     description = data.get('description')
 
@@ -77,30 +84,44 @@ def update_task():
         return jsonify({"message": "Task updated", "task": task}), 200
     return jsonify({"message": f"Task with ID {task_id} not found"}), 404
 
-@task_manager_bp.route('/delete-task', methods=['DELETE'])
-def delete_task():
-    data = request.get_json()
-    task_id = data.get('id')
+@task_manager_bp.route('/delete-task/<int:task_id>', methods=['DELETE','OPTIONS' ])
+def delete_task(task_id):
+    if request.method == 'OPTIONS':
+        # Explicitly handle OPTIONS preflight requests
+        return jsonify({
+            'message': 'CORS preflight request handled successfully'
+        }), 200
 
     tasks = load_tasks()
     tasks = [task for task in tasks if task["id"] != task_id]
     save_tasks(tasks)
     return jsonify({"message": f"Task with ID {task_id} has been deleted."}), 200
 
-@task_manager_bp.route('/mark-task', methods=['PUT'])
-def mark_task():
-    data = request.get_json()
-    task_id = data.get('id')
-    status = data.get('status')  # Should be one of "not done", "in progress", "done"
+@task_manager_bp.route('/mark-task/<int:task_id>', methods=['PUT', 'OPTIONS'])
+def mark_task(task_id):
+    if request.method == 'OPTIONS':
+        # Explicitly handle OPTIONS preflight requests
+        return jsonify({
+            'message': 'CORS preflight request handled successfully'
+        }), 200
     
-
+    # Handle PUT request for task status update
+    data = request.get_json()
+    status = data.get('status')  # Status should be one of "not done", "in progress", "done"
+    
     tasks = load_tasks()
     task = find_task(task_id, tasks)
+    
     if task:
         task["status"] = status
         save_tasks(tasks)
-        return jsonify({"message": f"Task ID {task_id} marked as {status}.", "task": task}), 200
-    return jsonify({"message": f"Task with ID {task_id} not found"}), 404
+        return jsonify({
+            "message": f"Task ID {task_id} marked as {status}.",
+            "task": task
+        }), 200
+    return jsonify({
+        "message": f"Task with ID {task_id} not found"
+    }), 404
 
 
 # Command-line Interface
