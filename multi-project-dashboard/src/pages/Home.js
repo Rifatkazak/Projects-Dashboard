@@ -42,6 +42,11 @@ const Home = () => {
                     description="Manage your tasks"
                     link="/TaskManager"
                 />
+                <ProjectCard
+                    projectName="Unit Converter"
+                    description="Convert your units"
+                    link="/UnitConverter"
+                />
             </div>
 
             {/* Expenses, Tasks, GitHub Activity can be shown here as well */}
