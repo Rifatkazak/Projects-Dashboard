@@ -22,7 +22,7 @@ const UnitConverter = () => {
     setResult(null);
 
     try {
-      const response = await fetch('/converter/convert', {
+      const response = await fetch('http://127.0.0.1:5000/converter/convert', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

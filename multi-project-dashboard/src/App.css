@@ -8,17 +8,22 @@
 .projects-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 2rem;
 }
 
 .project-card {
   border: 1px solid #ddd;
   padding: 20px;
-  width: 250px;
+  flex: 1 1 calc(25% - 30px);  /* 25% of the row minus gap */
+  max-width: calc(25% - 30px); /* Ensures no card exceeds 25% of the row */
+  box-sizing: border-box; /* Ensures padding and borders don't overflow */
   cursor: pointer;
   border-radius: 8px;
   transition: all 0.3s ease;
   background-color: #f9f9f9;
+
 }
 
 .project-card:hover {
@@ -79,4 +84,25 @@ form button {
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+}
+
+@media (max-width: 1200px) {
+  .project-card {
+    flex: 1 1 calc(33.33% - 30px);  /* 3 cards per row for medium screens */
+    max-width: calc(33.33% - 30px);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    flex: 1 1 calc(50% - 30px);  /* 2 cards per row for small screens */
+    max-width: calc(50% - 30px);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card {
+    flex: 1 1 100%;  /* 1 card per row for very small screens */
+    max-width: 100%;
+  }
 }

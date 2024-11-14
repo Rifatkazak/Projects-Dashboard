@@ -8,6 +8,7 @@ import ExpenseTracker from './pages/ExpenseTracker';
 import TaskManager from './pages/TaskManager';
 import GithubActivity from './pages/GithubActivitiy';
 import UnitConverter from './pages/UnitConverter';
+import GuessNumber from './pages/GuessNumber';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/TaskManager" element={<TaskManager />} />
                     <Route path="/GithubActivity" element={<GithubActivity />} />
                     <Route path="/UnitConverter" element={<UnitConverter />} />
+                    <Route path="/GuessNumber" element={<GuessNumber />} />
                     <Route path="/project/:projectName" element={<ProjectDetail />} />
                 </Routes>
             </div>

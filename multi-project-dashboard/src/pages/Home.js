@@ -47,6 +47,11 @@ const Home = () => {
                     description="Convert your units"
                     link="/UnitConverter"
                 />
+                <ProjectCard
+                    projectName="Guess Number"
+                    description="Play a game with number"
+                    link="/GuessNumber"
+                />
             </div>
 
             {/* Expenses, Tasks, GitHub Activity can be shown here as well */}
