@@ -9,18 +9,18 @@ const Home = () => {
     const [githubActivity, setGithubActivity] = useState([]);
 
     useEffect(() => {
-        fetchData();
+        //fetchData();
     }, []);
 
-    const fetchData = async () => {
-        const expenseData = await getExpenses();
-        const taskData = await getTasks();
-        const githubData = await getGitHubActivity('yourGitHubUsername'); // GitHub kullanıcı adınızı buraya ekleyin
+    // const fetchData = async () => {
+    //     const expenseData = await getExpenses();
+    //     const taskData = await getTasks();
+    //     //const githubData = await getGitHubActivity('yourGitHubUsername'); // GitHub kullanıcı adınızı buraya ekleyin
 
-        setExpenses(expenseData.expenses);
-        setTasks(taskData.tasks);
-        setGithubActivity(githubData.activities);
-    };
+    //     setExpenses(expenseData.expenses);
+    //     setTasks(taskData.tasks);
+    //     //setGithubActivity(githubData.activities);
+    // };
 
     return (
         <div className="home">

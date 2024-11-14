@@ -54,6 +54,7 @@ def fetch_github_activity(username):
 # GitHub kullanıcısının etkinliklerini getir
 @github_activity_bp.route('/activity/<username>', methods=['GET'])
 def get_activity(username):
+    print("username", username)
     # Fetch activities using the fetch_github_activity function
     activities = fetch_github_activity(username)
     
