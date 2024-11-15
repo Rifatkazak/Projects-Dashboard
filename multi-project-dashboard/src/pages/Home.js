@@ -52,6 +52,11 @@ const Home = () => {
                     description="Play a game with number"
                     link="/GuessNumber"
                 />
+                <ProjectCard
+                    projectName="Personal Blog"
+                    description="Manage Your Personal Blog"
+                    link="/PersonalBlog"
+                />
             </div>
 
             {/* Expenses, Tasks, GitHub Activity can be shown here as well */}
