@@ -10,6 +10,7 @@ import GithubActivity from './pages/GithubActivitiy';
 import UnitConverter from './pages/UnitConverter';
 import GuessNumber from './pages/GuessNumber';
 import PersonalBlog from './pages/PersonalBlog';
+import Weather from './pages/Weather';
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                     <Route path="/UnitConverter" element={<UnitConverter />} />
                     <Route path="/GuessNumber" element={<GuessNumber />} />
                     <Route path="/PersonalBlog" element={<PersonalBlog />} />
+                    <Route path="/Weather" element={<Weather />} />
                     <Route path="/project/:projectName" element={<ProjectDetail />} />
                 </Routes>
             </div>

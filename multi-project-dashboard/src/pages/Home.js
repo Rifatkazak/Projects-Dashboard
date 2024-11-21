@@ -57,6 +57,11 @@ const Home = () => {
                     description="Manage Your Personal Blog"
                     link="/PersonalBlog"
                 />
+                <ProjectCard
+                    projectName="Weather API"
+                    description="Take your city weather"
+                    link="/Weather"
+                />
             </div>
 
             {/* Expenses, Tasks, GitHub Activity can be shown here as well */}

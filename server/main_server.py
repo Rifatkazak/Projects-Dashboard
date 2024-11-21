@@ -6,6 +6,7 @@ from task_manager import task_manager_bp
 from converter import converter_bp
 from guess_number import guessnumber_bp
 from personal_blog import personal_blog_bp
+from weather_api import weather_bp
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -19,12 +20,13 @@ app.register_blueprint(task_manager_bp, url_prefix='/task-manager')
 app.register_blueprint(converter_bp, url_prefix='/converter')
 app.register_blueprint(guessnumber_bp, url_prefix='/guess-number')
 app.register_blueprint(personal_blog_bp, url_prefix='/personal-blog')
+app.register_blueprint(weather_bp, url_prefix='/weather')
 
 @app.route('/')
 def home():
     return jsonify({
         "message": "Welcome to the Multi-Project API",
-        "projects": ["Expense Tracker", "GitHub User Activity", "Task Manager", "Units Converter" , "Guess Number", "Personal Blog"]
+        "projects": ["Expense Tracker", "GitHub User Activity", "Task Manager", "Units Converter" , "Guess Number", "Personal Blog", "Weather API"]
     })
 
 if __name__ == '__main__':
