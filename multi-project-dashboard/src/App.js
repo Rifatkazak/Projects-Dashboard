@@ -11,6 +11,7 @@ import UnitConverter from './pages/UnitConverter';
 import GuessNumber from './pages/GuessNumber';
 import PersonalBlog from './pages/PersonalBlog';
 import Weather from './pages/Weather';
+import BlogPlatform from './pages/BlogPlatform';
 
 const App = () => {
     return (
@@ -25,6 +26,7 @@ const App = () => {
                     <Route path="/GuessNumber" element={<GuessNumber />} />
                     <Route path="/PersonalBlog" element={<PersonalBlog />} />
                     <Route path="/Weather" element={<Weather />} />
+                    <Route path="/BlogPlatform" element={<BlogPlatform />} />
                     <Route path="/project/:projectName" element={<ProjectDetail />} />
                 </Routes>
             </div>
