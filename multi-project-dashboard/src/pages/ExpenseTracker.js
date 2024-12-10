@@ -20,7 +20,6 @@ const ExpenseTrackerPage = () => {
             throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log("data",data)
         setExpenses(data.expenses);
     } catch (error) {
         console.error("Error fetching expenses:", error);
