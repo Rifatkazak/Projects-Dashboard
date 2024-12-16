@@ -30,7 +30,6 @@ const GuessNumber = () => {
         gameId,
         guess: parseInt(guess, 10)
       });
-      console.log("resp", response)
       setFeedback(response.data.message);
       setAttemptsLeft(response.data.attempts_left);
       setAttemptsUsed(response.data.attempts_used);
